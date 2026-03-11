@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=DM+Serif+Display&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- <nav class="top-nav">
+    <div class="nav-container">
+        <div class="nav-brand">Thai Health News Verify</div>
+        <a href="https://github.com/thamonS/ThaiHealthNewsVerify" target="_blank" class="nav-github">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+        </a>
+    </div>
+</nav> -->
+
+
+<section class="hero">
+    <div class="hero-deco hero-deco-1"></div>
+    <div class="hero-deco hero-deco-2"></div>
+    <div style="position:relative;z-index:2;">
+        <div class="hero-badge">📄 Senior Project · 2025</div>
+        <h1 class="hero-title-th">การพัฒนาระบบตอบกลับอัตโนมัติ<br>ในการตรวจสอบข่าวสุขภาพภาษาไทย<br>ด้วยแบบจำลองภาษาขนาดใหญ่<br>ร่วมกับเทคนิคการสร้างคำตอบจากการดึงข้อมูล</h1>
+        <p class="hero-title-en">Development of an Automated Health News Verification Response System in Thai<br>Using Large Language Models and Retrieval-Augmented Generation</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="stats-bar reveal">
+        <div class="stat-item">
+            <div class="stat-num">3,373</div>
+            <div class="stat-label">Thai Health News Articles</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">93%</div>
+            <div class="stat-label">Accuracy (Test Set)</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">0.90</div>
+            <div class="stat-label">F1-Score</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">RAG</div>
+            <div class="stat-label">Core Technology</div>
+        </div>
+    </div>
+</div>
+
+<section style="background: var(--gray-50);">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="section-icon icon-green">👥</div>
+            <h2 class="section-heading"><span>ทีมวิจัย</span> · Research Team</h2>
+        </div>
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:24px;font-family:'Noto Sans Thai','Lato',sans-serif;" class="reveal">คลิกที่ปุ่ม GitHub เพื่อดูโปรไฟล์ของแต่ละคน</p>
+        <div class="team-grid reveal">
+            <div class="team-card">
+                <img class="team-avatar" src="{{ url_for('static', filename='images/pornwalai_pic.jpg') }}" alt="Pornwalai Foxall" style="object-fit:cover;">
+                <div class="team-role">Developer</div>
+                <div class="team-name">พรวลัย ฟ็อกซ์ออล<br><span style="font-size:13px;color:var(--gray-500);">Pornwalai Foxall</span></div>
+                <a href="https://github.com/Pornwalaifoxall" target="_blank" class="github-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <div class="team-card">
+                <img class="team-avatar" src="{{ url_for('static', filename='images/thamon_pic.jpg') }}" alt="Thamon Siriprahmanakul" style="object-fit:cover;">
+                <div class="team-role">Developer</div>
+                <div class="team-name">ธมน ศิริพราหมณกุล<br><span style="font-size:13px;color:var(--gray-500);">Thamon Siriprahmanakul</span></div>
+                <a href="https://github.com/thamonS" target="_blank" class="github-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <div class="team-card">
+                <img class="team-avatar" src="{{ url_for('static', filename='images/AjYa.jpg') }}" alt="Pitchaya Wiratchotisatian" style="object-fit:cover;background:none;">
+                <div class="team-role" style="color: var(--green);">Advisor</div>
+                <div class="team-name">พิชญา วิรัชโชติเสถียร<br><span style="font-size:13px;color:var(--gray-500);">Pitchaya Wiratchotisatian</span></div>
+                <span style="display:inline-flex;align-items:center;gap:6px;background:var(--gray-200);color:var(--gray-500);font-size:12px;padding:6px 14px;border-radius:999px;font-family:'Lato',sans-serif;">
+                    No GitHub
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--white);">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="section-icon icon-teal">📄</div>
+            <h2 class="section-heading"><span>บทคัดย่อ</span> · Abstract</h2>
+        </div>
+        <div class="abstract-card reveal">
+            <div class="lang-tabs">
+                <button class="lang-tab active" onclick="switchLang('th')">🇹🇭 ภาษาไทย</button>
+                <button class="lang-tab" onclick="switchLang('en')">🇬🇧 English</button>
+            </div>
+            <div id="abstract-th" class="abstract-text">
+                ปัญหาการแพร่กระจายของข่าวปลอมในสื่อออนไลน์เป็นภัยคุกคามสำคัญต่อสังคมไทย โดยข้อมูลจากศูนย์ต่อต้านข่าวปลอมประเทศไทยพบว่า ข่าวปลอมที่อยู่ในหมวดสุขภาพคิดเป็นร้อยละ 36.71 ของทุก ๆ หมวด ซึ่งส่งผลกระทบต่อการตัดสินใจด้านสุขภาพของประชาชน เพื่อตอบโจทย์ปัญหานี้ จึงได้มีการพัฒนาระบบตรวจสอบข่าวโดยการใช้แบบจำลองภาษาขนาดใหญ่ แต่ยังคงมีข้อจำกัดในการสร้างข้อความที่ไม่เกี่ยวข้องกันหรือไม่มีอยู่จริง งานวิจัยนี้จึงได้พัฒนาระบบตอบกลับอัตโนมัติในการตรวจสอบข่าวสุขภาพภาษาไทย โดยใช้แบบจำลองภาษาขนาดใหญ่ร่วมกับเทคนิคการสร้างคำตอบด้วยการดึงข้อมูลภายนอกจากแหล่งอ้างอิงที่น่าเชื่อถือเพื่อให้ข้อมูลเป็นปัจจุบัน ในการวิจัยได้ใช้ข้อมูลข่าวสุขภาพภาษาไทยจำนวน 3,373 ข่าว จากศูนย์ต่อต้านข่าวปลอมประเทศไทย โดยใช้โมเดล Typhoon2-Qwen2.5-7B-Instruct ในการสร้างคำตอบให้กับระบบ ซึ่งทำการทดสอบประสิทธิภาพด้วยชุดทดสอบ 200 ข่าว<br><br>จากผลการทดสอบประสิทธิภาพพบว่า ระบบมีความแม่นยำร้อยละ 93.00 (F1-score 0.9027) เมื่อทดสอบกับชุดข้อความคลุมเครือมีความแม่นยำร้อยละ 92.16 (F1-score 0.8947) ชุดข้อความที่มีการเขียนผิดมีความแม่นยำร้อยละ 89.83 (F1-score 0.8500) และชุดข้อความที่มีความหมายตรงข้ามมีความแม่นยำที่ร้อยละ 74.36 (F1-score 0.7826) ซึ่งแสดงให้เห็นว่าระบบสามารถตรวจสอบข่าวสุขภาพได้อย่างมีประสิทธิภาพ นอกจากนี้ ระบบยังตอบกลับพร้อมเหตุผลประกอบการจำแนกประเภทข่าว รวมถึงแสดงแหล่งอ้างอิง (URLs) จากแหล่งข้อมูลที่น่าเชื่อถือ และให้คำแนะนำเพิ่มเติมที่เหมาะสม
+                <div class="keywords">
+                    <strong>คำสำคัญ :</strong> เทคนิคการสร้างคำตอบจากการดึงข้อมูล, แบบจำลองภาษาขนาดใหญ่, การประมวลผลภาษาธรรมชาติ, ข่าวปลอมด้านสุขภาพ, ระบบตรวจสอบข่าวสุขภาพภาษาไทย
+                </div>
+            </div>
+            <div id="abstract-en" class="abstract-text hidden">
+                The spread of fake news on social media poses a significant threat to Thai society. The Anti-Fake News Center Thailand reported that health-related fake news accounted for 36.71% of all categories, impacting public health decision-making. To address this issue, news verification systems using Large Language Models (LLMs) have been developed. However, these systems still have limitations, such as generating irrelevant or non-existent information, which can lead to hallucinations. This research developed an automated health news verification response system in Thai using LLMs and Retrieval-Augmented Generation (RAG) with information retrieved from credible sources to ensure that the information remains current and accurate.<br><br>The study utilized 3,373 Thai health news articles from the Anti-Fake News Center Thailand. The Typhoon2-Qwen2.5-7B-Instruct model was used to generate responses, and the system was evaluated using a test set of 200 news topics. The performance results showed that the system achieved an accuracy of 97.00% (F1-score 0.9605). When tested with ambiguous text, the accuracy was 94.12% (F1-score 0.9189). For text containing typographical errors, the accuracy was 89.83% (F1-score 0.8500). And for text with opposite meanings, the accuracy was 74.36% (F1-score 0.7826). The results demonstrate the system's potential to be applied as a practical tool for verifying Thai health news, improving convenience, speed, and reliability of the verification process.
+                <div class="keywords">
+                    <strong>Keywords:</strong> Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), Natural Language Processing (NLP), Health misinformation, Thai health news verification system
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--gray-50);">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="section-icon icon-green">⚙️</div>
+            <h2 class="section-heading"><span>ขั้นตอนการทำงาน</span> · Workflow</h2>
+        </div>
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:24px;font-family:'Noto Sans Thai','Lato',sans-serif;" class="reveal">คลิกที่รูปเพื่อดูภาพขนาดเต็ม 🔍</p>
+        <div class="workflow-grid reveal">
+            <div class="workflow-card" onclick="openLightbox('prepare')">
+                <img class="workflow-img" src="{{ url_for('static', filename='images/workflow prepare.png') }}" alt="Data Preparation Workflow">
+                <div class="workflow-overlay">🔍</div>
+                <div class="workflow-label"><span class="wf-badge">1</span> Data Preparation Workflow</div>
+            </div>
+            <div class="workflow-card" onclick="openLightbox('system')">
+                <img class="workflow-img" src="{{ url_for('static', filename='images/workflow system.png') }}" alt="System Workflow">
+                <div class="workflow-overlay">🔍</div>
+                <div class="workflow-label"><span class="wf-badge">2</span> System Workflow</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PDF DOCS SECTION -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="section-icon icon-green">📚</div>
+      <h2 class="section-heading"><span>เอกสารงานวิจัย</span> · Research Documents</h2>
+    </div>
+    <div class="doc-grid reveal">
+      <a href="{{ url_for('static', filename='images/แก้_เนื้อหา form1.pdf') }}" target="_blank" class="doc-card">
+        <div class="doc-icon">PDF</div>
+        <div class="doc-info">
+          <div class="doc-title">เค้าโครงงานวิจัย</div>
+          <div class="doc-subtitle">ความเป็นมา, วัตถุประสงค์, ขอบเขตการวิจัย, เอกสารที่เกี่ยวข้องกับงานวิจัย, วิธีการดำเนินการวิจัย</div>
+        </div>
+        <div class="doc-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="section-icon icon-teal">🎬</div>
+      <h2 class="section-heading"><span>วิดีโอสาธิตการใช้งาน</span>
+    </div>
+    <p style="font-size:13px;color:var(--gray-500);margin-bottom:24px;font-family:'Noto Sans Thai','Lato',sans-serif;" class="reveal">ชมการใช้งานเว็บแอปพลิเคชันตรวจสอบข่าวสุขภาพภาษาไทย</p>
+    <div class="video-wrapper reveal">
+      <video controls preload="metadata" poster="">
+        <source src="{{ url_for('static', filename='images/นำเสนอ web app(frontend).mp4') }}" type="video/mp4">
+        <source src="{{ url_for('static', filename='images/นำเสนอ web app(frontend).mp4') }}" type="video/quicktime">
+        <p style="color:white;padding:40px;text-align:center;font-family:'Noto Sans Thai',sans-serif;">เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอนี้</p>
+      </video>
+      <div class="video-caption">
+        🎥 &nbsp;วิธีสาธิตการใช้งาน Web Application — MediCheck AI
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--white);">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="section-icon icon-teal">🚀</div>
+            <h2 class="section-heading"><span>เว็บแอปพลิเคชัน</span> · Web Application</h2>
+        </div>
+        <div class="app-placeholder reveal">
+            <div class="app-icon">🏗️</div>
+            <p><strong>อยู่ในระหว่างการพัฒนา</strong></p>
+            <p style="margin-top:8px;">Web application coming soon — ลิงก์จะถูกเพิ่มเมื่อเว็บแอปพร้อมใช้งาน</p>
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<footer>
+    <div class="footer-logo">🎓</div>
+    <div class="footer-dept">สาขาวิชาสถิติ เอกสารสนเทศสถิติและวิทยาการข้อมูล</div>
+    <div class="footer-faculty">Department of Statistics, Information Statistics and Data Science</div>
+    <div class="footer-divider"></div>
+    <div class="footer-faculty">คณะวิทยาศาสตร์ · Faculty of Science</div>
+    <div class="footer-uni" style="margin-top:6px;">Khon Kaen University · มหาวิทยาลัยขอนแก่น</div>
+</footer>
+
+<script>
+  window.IMAGE_PATHS = {
+    prepare: "{{ url_for('static', filename='images/workflow prepare.png') }}",
+    system:  "{{ url_for('static', filename='images/workflow system.png') }}"
+  };
+</script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thai Health News Verify</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=DM+Serif+Display&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="nav-container">
+        <div class="nav-brand">Thai Health News Verify</div>
+        <a href="https://github.com/thamonS/ThaiHealthNewsVerify" target="_blank" class="nav-github">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+        </a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-deco hero-deco-1"></div>
+    <div class="hero-deco hero-deco-2"></div>
+    <div style="position:relative;z-index:2;">
+        <div class="hero-badge">📄 Senior Project · 2025</div>
+        <h1 class="hero-title-th">การพัฒนาระบบตอบกลับอัตโนมัติ<br>ในการตรวจสอบข่าวสุขภาพภาษาไทย<br>ด้วยแบบจำลองภาษาขนาดใหญ่<br>ร่วมกับเทคนิคการสร้างคำตอบจากการดึงข้อมูล</h1>
+        <p class="hero-title-en">Development of an Automated Health News Verification Response System in Thai<br>Using Large Language Models and Retrieval-Augmented Generation</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="stats-bar reveal">
+        <div class="stat-item">
+            <div class="stat-num">3,373</div>
+            <div class="stat-label">Thai Health News Articles</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">93%</div>
+            <div class="stat-label">Accuracy (Test Set)</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">0.90</div>
+            <div class="stat-label">F1-Score</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">RAG</div>
+            <div class="stat-label">Core Technology</div>
+        </div>
+    </div>
+</div>
+
+<section style="background: var(--white);">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="section-icon icon-teal">📺</div>
+            <h2 class="section-heading"><span>วิดีโอสาธิตการใช้งาน</span> · Web App Demo</h2>
+        </div>
+        <div class="video-container reveal">
+            <video controls style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <source src="{{ url_for('static', filename='images/นำเสนอ web app(frontend).mov') }}" type="video/quicktime">
+                <source src="{{ url_for('static', filename='images/นำเสนอ web app(frontend).mov') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--gray-50);">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="section-icon icon-green">📖</div>
+            <h2 class="section-heading"><span>เนื้อหางานวิจัย (บทที่ 1-2)</span> · Research Chapters</h2>
+        </div>
+        <div class="pdf-viewer reveal" style="background: white; padding: 10px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+            <iframe src="{{ url_for('static', filename='images/แก้_เนื้อหา form1.pdf') }}#toolbar=0" width="100%" height="600px" style="border: none; border-radius: 8px;"></iframe>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="{{ url_for('static', filename='images/แก้_เนื้อหา form1.pdf') }}" target="_blank" class="github-btn" style="display: inline-flex;">เปิดไฟล์ PDF ขนาดเต็ม</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--white);">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="section-icon icon-green">👥</div>
+            <h2 class="section-heading"><span>ทีมวิจัย</span> · Research Team</h2>
+        </div>
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:24px;font-family:'Noto Sans Thai','Lato',sans-serif;" class="reveal">คลิกที่ปุ่ม GitHub เพื่อดูโปรไฟล์ของแต่ละคน</p>
+        <div class="team-grid reveal">
+            <div class="team-card">
+                <img class="team-avatar" src="{{ url_for('static', filename='images/pornwalai_pic.jpg') }}" alt="Pornwalai Foxall" style="object-fit:cover;">
+                <div class="team-role">Developer</div>
+                <div class="team-name">พรวลัย ฟ็อกซ์ออล<br><span style="font-size:13px;color:var(--gray-500);">Pornwalai Foxall</span></div>
+                <a href="https://github.com/Pornwalaifoxall" target="_blank" class="github-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <div class="team-card">
+                <img class="team-avatar" src="{{ url_for('static', filename='images/thamon_pic.jpg') }}" alt="Thamon Siriprahmanakul" style="object-fit:cover;">
+                <div class="team-role">Developer</div>
+                <div class="team-name">ธมน ศิริพราหมณกุล<br><span style="font-size:13px;color:var(--gray-500);">Thamon Siriprahmanakul</span></div>
+                <a href="https://github.com/thamonS" target="_blank" class="github-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <div class="team-card">
+                <img class="team-avatar" src="{{ url_for('static', filename='images/AjYa.jpg') }}" alt="Pitchaya Wiratchotisatian" style="object-fit:cover;background:none;">
+                <div class="team-role" style="color: var(--green);">Advisor</div>
+                <div class="team-name">พิชญา วิรัชโชติเสถียร<br><span style="font-size:13px;color:var(--gray-500);">Pitchaya Wiratchotisatian</span></div>
+                <span style="display:inline-flex;align-items:center;gap:6px;background:var(--gray-200);color:var(--gray-500);font-size:12px;padding:6px 14px;border-radius:999px;font-family:'Lato',sans-serif;">
+                    No GitHub
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--gray-50);">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="section-icon icon-teal">📄</div>
+            <h2 class="section-heading"><span>บทคัดย่อ</span> · Abstract</h2>
+        </div>
+        <div class="abstract-card reveal">
+            <div class="lang-tabs">
+                <button class="lang-tab active" onclick="switchLang('th')">🇹🇭 ภาษาไทย</button>
+                <button class="lang-tab" onclick="switchLang('en')">🇬🇧 English</button>
+            </div>
+            <div id="abstract-th" class="abstract-text">
+                ปัญหาการแพร่กระจายของข่าวปลอมในสื่อออนไลน์เป็นภัยคุกคามสำคัญต่อสังคมไทย โดยข้อมูลจากศูนย์ต่อต้านข่าวปลอมประเทศไทยพบว่า ข่าวปลอมที่อยู่ในหมวดสุขภาพคิดเป็นร้อยละ 36.71 ของทุก ๆ หมวด ซึ่งส่งผลกระทบต่อการตัดสินใจด้านสุขภาพของประชาชน เพื่อตอบโจทย์ปัญหานี้ จึงได้มีการพัฒนาระบบตรวจสอบข่าวโดยการใช้แบบจำลองภาษาขนาดใหญ่ แต่ยังคงมีข้อจำกัดในการสร้างข้อความที่ไม่เกี่ยวข้องกันหรือไม่มีอยู่จริง งานวิจัยนี้จึงได้พัฒนาระบบตอบกลับอัตโนมัติในการตรวจสอบข่าวสุขภาพภาษาไทย โดยใช้แบบจำลองภาษาขนาดใหญ่ร่วมกับเทคนิคการสร้างคำตอบด้วยการดึงข้อมูลภายนอกจากแหล่งอ้างอิงที่น่าเชื่อถือเพื่อให้ข้อมูลเป็นปัจจุบัน ในการวิจัยได้ใช้ข้อมูลข่าวสุขภาพภาษาไทยจำนวน 3,373 ข่าว จากศูนย์ต่อต้านข่าวปลอมประเทศไทย โดยใช้โมเดล Typhoon2-Qwen2.5-7B-Instruct ในการสร้างคำตอบให้กับระบบ ซึ่งทำการทดสอบประสิทธิภาพด้วยชุดทดสอบ 200 ข่าว<br><br>จากผลการทดสอบประสิทธิภาพพบว่า ระบบมีความแม่นยำร้อยละ 93.00 (F1-score 0.9027) เมื่อทดสอบกับชุดข้อความคลุมเครือมีความแม่นยำร้อยละ 92.16 (F1-score 0.8947) ชุดข้อความที่มีการเขียนผิดมีความแม่นยำร้อยละ 89.83 (F1-score 0.8500) และชุดข้อความที่มีความหมายตรงข้ามมีความแม่นยำที่ร้อยละ 74.36 (F1-score 0.7826) ซึ่งแสดงให้เห็นว่าระบบสามารถตรวจสอบข่าวสุขภาพได้อย่างมีประสิทธิภาพ นอกจากนี้ ระบบยังตอบกลับพร้อมเหตุผลประกอบการจำแนกประเภทข่าว รวมถึงแสดงแหล่งอ้างอิง (URLs) จากแหล่งข้อมูลที่น่าเชื่อถือ และให้คำแนะนำเพิ่มเติมที่เหมาะสม
+                <div class="keywords">
+                    <strong>คำสำคัญ :</strong> เทคนิคการสร้างคำตอบจากการดึงข้อมูล, แบบจำลองภาษาขนาดใหญ่, การประมวลผลภาษาธรรมชาติ, ข่าวปลอมด้านสุขภาพ, ระบบตรวจสอบข่าวสุขภาพภาษาไทย
+                </div>
+            </div>
+            <div id="abstract-en" class="abstract-text hidden">
+                The spread of fake news on social media poses a significant threat to Thai society. The Anti-Fake News Center Thailand reported that health-related fake news accounted for 36.71% of all categories, impacting public health decision-making. To address this issue, news verification systems using Large Language Models (LLMs) have been developed. However, these systems still have limitations, such as generating irrelevant or non-existent information, which can lead to hallucinations. This research developed an automated health news verification response system in Thai using LLMs and Retrieval-Augmented Generation (RAG) with information retrieved from credible sources to ensure that the information remains current and accurate.<br><br>The study utilized 3,373 Thai health news articles from the Anti-Fake News Center Thailand. The Typhoon2-Qwen2.5-7B-Instruct model was used to generate responses, and the system was evaluated using a test set of 200 news topics. The performance results showed that the system achieved an accuracy of 97.00% (F1-score 0.9605). When tested with ambiguous text, the accuracy was 94.12% (F1-score 0.9189). For text containing typographical errors, the accuracy was 89.83% (F1-score 0.8500). And for text with opposite meanings, the accuracy was 74.36% (F1-score 0.7826). The results demonstrate the system's potential to be applied as a practical tool for verifying Thai health news, improving convenience, speed, and reliability of the verification process.
+                <div class="keywords">
+                    <strong>Keywords:</strong> Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), Natural Language Processing (NLP), Health misinformation, Thai health news verification system
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--white);">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="section-icon icon-green">⚙️</div>
+            <h2 class="section-heading"><span>ขั้นตอนการทำงาน</span> · Workflow</h2>
+        </div>
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:24px;font-family:'Noto Sans Thai','Lato',sans-serif;" class="reveal">คลิกที่รูปเพื่อดูภาพขนาดเต็ม 🔍</p>
+        <div class="workflow-grid reveal">
+            <div class="workflow-card" onclick="openLightbox('prepare')">
+                <img class="workflow-img" src="{{ url_for('static', filename='images/workflow prepare.png') }}" alt="Data Preparation Workflow">
+                <div class="workflow-overlay">🔍</div>
+                <div class="workflow-label"><span class="wf-badge">1</span> Data Preparation Workflow</div>
+            </div>
+            <div class="workflow-card" onclick="openLightbox('system')">
+                <img class="workflow-img" src="{{ url_for('static', filename='images/workflow system.png') }}" alt="System Workflow">
+                <div class="workflow-overlay">🔍</div>
+                <div class="workflow-label"><span class="wf-badge">2</span> System Workflow</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<footer>
+    <div class="footer-logo">🎓</div>
+    <div class="footer-dept">สาขาวิชาสถิติ เอกสารสนเทศสถิติและวิทยาการข้อมูล</div>
+    <div class="footer-faculty">Department of Statistics, Information Statistics and Data Science</div>
+    <div class="footer-divider"></div>
+    <div class="footer-faculty">คณะวิทยาศาสตร์ · Faculty of Science</div>
+    <div class="footer-uni" style="margin-top:6px;">Khon Kaen University · มหาวิทยาลัยขอนแก่น</div>
+</footer>
+
+<script>
+  window.IMAGE_PATHS = {
+    prepare: "{{ url_for('static', filename='images/workflow prepare.png') }}",
+    system:  "{{ url_for('static', filename='images/workflow system.png') }}"
+  };
+</script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> -->
